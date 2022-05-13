@@ -5,10 +5,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 30px 20px;
 
   background-color: #051e32;
-  color: white;
+  color: #fff;
 `;
 
 export const ContentContainer = styled.div`
@@ -17,6 +17,12 @@ export const ContentContainer = styled.div`
   width: 100%;
   max-width: 1024px;
   gap: 30px;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
 `;
 
 export const FormContainer = styled.form`
@@ -58,6 +64,13 @@ export const InputContainer = styled.div`
     padding: 5px;
   }
 
+  input[type="number"] {
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   p {
     display: flex;
     align-items: center;
@@ -66,6 +79,9 @@ export const InputContainer = styled.div`
   > span {
     color: red;
     font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 `;
 
@@ -77,10 +93,32 @@ export const InformationsContainer = styled.div`
   ol {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 10px;
+    list-style-position: inside;
   }
 
   mark {
     font-weight: 500;
+  }
+`;
+
+export const InfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  background-color: gray;
+  border-radius: 5px;
+  color: #2d2d2d;
+  font-weight: 500;
+  min-height: 40px;
+  padding: 5px;
+
+  p {
+    display: flex;
+  }
+
+  svg {
+    margin-right: 5px;
   }
 `;

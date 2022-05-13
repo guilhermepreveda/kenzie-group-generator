@@ -5,11 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #0000fd;
-  font-size: 28px;
-  font-weight: 800;
+  background-color: #0f0f0f;
+  font-size: 11px;
+  font-weight: 600;
   color: #fff;
-  min-height: 50px;
+  min-height: 30px;
   padding: 5px;
-  width: 100%;
+  justify-self: flex-end;
 `;

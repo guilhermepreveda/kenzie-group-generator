@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import toast from "react-hot-toast";
+
+import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { HiOutlinePencil } from "react-icons/hi";
+import { RiAlertLine } from "react-icons/ri";
+import { MdConstruction } from "react-icons/md";
 
 import {
   Container,
@@ -11,6 +15,7 @@ import {
   Label,
   InputContainer,
   InformationsContainer,
+  InfoContainer,
 } from "./styles";
 
 const Form = ({ setMembersInformations }) => {
@@ -43,14 +48,16 @@ const Form = ({ setMembersInformations }) => {
 
   const onSubmitHandler = (data) => {
     setMembersInformations(data);
-    toast.success("Grupos criados com sucesso!");
   };
 
   return (
     <Container>
       <ContentContainer>
         <InformationsContainer>
-          <h2>Como usar</h2>
+          <h2>
+            <AiOutlineQuestionCircle />
+            Como usar
+          </h2>
           <ol>
             <li>
               Preencha o <strong>número de devs por grupos</strong>
@@ -58,11 +65,11 @@ const Form = ({ setMembersInformations }) => {
             <li>
               Marque as caixas se quiser{" "}
               <strong>incluir Tech Leaders e Scrum Masters</strong>
-              nos grupos
+              &nbsp;nos grupos
             </li>
             <li>
               Coloque os <strong>devs nas caixas de texto</strong>, separando
-              eles por vírgulo ou com ENTER
+              eles por vírgula ou com ENTER
             </li>
             <li>
               Veja o resultado dos grupos e{" "}
@@ -81,10 +88,24 @@ const Form = ({ setMembersInformations }) => {
             </a>
             ) e <strong>colar nas caixas de texto!</strong>
           </mark>
+
+          <InfoContainer title="Ainda em desenvolvimento!">
+            <p>
+              <MdConstruction />
+              Ao colocar um&nbsp;<strong>* no final do nome</strong>&nbsp; de um
+              dev, você&nbsp;
+              <strong>
+                priorizará ele para ficar em um grupo com mais devs
+              </strong>
+            </p>
+          </InfoContainer>
         </InformationsContainer>
 
         <FormContainer onSubmit={handleSubmit(onSubmitHandler)}>
-          <h2>Formulário</h2>
+          <h2>
+            <HiOutlinePencil />
+            Formulário
+          </h2>
           <InputContainer>
             <Label htmlFor="membersNumber">
               <p>
@@ -94,12 +115,16 @@ const Form = ({ setMembersInformations }) => {
                 {...register("membersNumber")}
                 type="number"
                 placeholder="2"
+                defaultValue={2}
                 step={1}
                 min={2}
+                max={99}
               />
             </Label>
             {errors.membersNumber?.message && (
-              <span>{errors.membersNumber?.message} *</span>
+              <span>
+                <RiAlertLine /> {errors.membersNumber?.message} *
+              </span>
             )}
           </InputContainer>
 
@@ -115,7 +140,9 @@ const Form = ({ setMembersInformations }) => {
               />
             </Label>
             {errors.techLeader?.message && (
-              <span>{errors.techLeader?.message} *</span>
+              <span>
+                <RiAlertLine /> {errors.techLeader?.message} *
+              </span>
             )}
           </InputContainer>
 
@@ -129,10 +156,13 @@ const Form = ({ setMembersInformations }) => {
                 <textarea
                   {...register("techLeaders")}
                   placeholder="Victor, Hudson, Gabriel"
+                  defaultValue={"Victor, Hudson, Gabriel"}
                 />
               </Label>
               {errors.techLeaders?.message && (
-                <span>{errors.techLeaders?.message} *</span>
+                <span>
+                  <RiAlertLine /> {errors.techLeaders?.message} *
+                </span>
               )}
             </InputContainer>
           )}
@@ -150,7 +180,9 @@ const Form = ({ setMembersInformations }) => {
               />
             </Label>
             {errors.scrumMaster?.message && (
-              <span>{errors.scrumMaster?.message} *</span>
+              <span>
+                <RiAlertLine /> {errors.scrumMaster?.message} *
+              </span>
             )}
           </InputContainer>
 
@@ -165,10 +197,13 @@ const Form = ({ setMembersInformations }) => {
                 <textarea
                   {...register("scrumMasters")}
                   placeholder="Jardel, Pedro, Heric"
+                  defaultValue={"Jardel, Pedro, Heric"}
                 />
               </Label>
               {errors.scrumMasters?.message && (
-                <span>{errors.scrumMasters?.message} *</span>
+                <span>
+                  <RiAlertLine /> {errors.scrumMasters?.message} *
+                </span>
               )}
             </InputContainer>
           )}
@@ -182,10 +217,13 @@ const Form = ({ setMembersInformations }) => {
               <textarea
                 {...register("members")}
                 placeholder="Lucas, Maria, Caique"
+                defaultValue={"Lucas, Maria, Caique"}
               />
             </Label>
             {errors.members?.message && (
-              <span>{errors.members?.message} *</span>
+              <span>
+                <RiAlertLine /> {errors.members?.message} *
+              </span>
             )}
           </InputContainer>
 

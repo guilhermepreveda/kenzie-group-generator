@@ -31,8 +31,12 @@ export default createGlobalStyle`
     }
     body {
         line-height: 1;
-        min-height: 100vh;
+        height: 100vh;
         min-width: 100%;
+    }
+
+    #root {
+        height: 100%;
     }
 
     details {

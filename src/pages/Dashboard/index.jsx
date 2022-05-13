@@ -1,8 +1,9 @@
-import { Container } from "./styles";
+import { Container, Group } from "./styles";
 
 import { useEffect } from "react";
 
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import Form from "../../components/Form";
 import Results from "../../components/Results";
 import Message from "../../components/Message";
@@ -21,10 +22,14 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <Header />
-      <Form setMembersInformations={setMembersInformations} />
-      <Results membersInformations={membersInformations} groups={groups} />
-      <Message groups={groups} />
+      <Group>
+        <Header />
+        <Form setMembersInformations={setMembersInformations} />
+        <Results membersInformations={membersInformations} groups={groups} />
+        <Message groups={groups} />
+      </Group>
+
+      <Footer />
     </Container>
   );
 };
