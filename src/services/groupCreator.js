@@ -5,22 +5,36 @@ const groupCreator = (membersInformations, setGroups) => {
 
   // Coloca todos os membros dentro de um array
   let membersArray = membersInformations.members?.includes(",")
-    ? membersInformations.members?.split(",")
-    : membersInformations.members?.split("\n");
+    ? membersInformations.members?.trim().split(",")
+    : membersInformations.members?.trim().split("\n");
+
+  membersArray = membersArray.map((member) => member.trim());
 
   // Coloca todos os tech leaders, se existirem, dentro de um array
   let techLeadersArray = membersInformations.techLeader
     ? membersInformations.techLeaders?.includes(",")
-      ? membersInformations.techLeaders?.split(",")
-      : membersInformations.techLeaders?.split("\n")
+      ? membersInformations.techLeaders?.trim().split(",")
+      : membersInformations.techLeaders?.trim().split("\n")
     : [];
+
+  techLeadersArray = techLeadersArray.map((member) => member.trim());
 
   // Coloca todos os scrum masters, se existirem, dentro de um array
   let scrumMastersArray = membersInformations.scrumMaster
     ? membersInformations.scrumMasters?.includes(",")
-      ? membersInformations.scrumMasters?.split(",")
-      : membersInformations.scrumMasters?.split("\n")
+      ? membersInformations.scrumMasters?.trim().split(",")
+      : membersInformations.scrumMasters?.trim().split("\n")
     : [];
+
+  scrumMastersArray = scrumMastersArray.map((member) => member.trim());
+
+  /* Validação de nomes duplicados */
+
+  const allMembersArray = [
+    ...scrumMastersArray,
+    ...techLeadersArray,
+    ...membersArray,
+  ];
 
   /* Dados úteis para comparações */
 
@@ -142,15 +156,12 @@ const groupCreator = (membersInformations, setGroups) => {
           techLeaderOnGroup -
           scrumMasterOnGroup;
 
-    console.log(
-      remainingSlots(),
-      mustHaveScrumMasters && !currentGroup.scrumMaster
-    );
-
     if (
       remainingSlots() > 0 &&
-      (!(mustHaveScrumMasters && !!currentGroup.scrumMaster) ||
-        !(mustHaveTechLeaders && !!currentGroup.techLeader))
+      ((mustHaveScrumMasters && !!currentGroup.scrumMaster) ||
+        (mustHaveTechLeaders && !!currentGroup.techLeader) ||
+        (!mustHaveScrumMasters && !currentGroup.scrumMaster) ||
+        (!mustHaveTechLeaders && !currentGroup.techLeader))
     ) {
       while (remainingSlots() > 0) {
         const memberIndex = randomIndexChooser(membersArray);
@@ -178,7 +189,7 @@ const groupCreator = (membersInformations, setGroups) => {
     }
   }
 
-  //console.log(groups, membersArray);
+  // console.log(groups, membersArray);
   setGroups(groups);
   toast.success("Grupos criados com sucesso!");
 };
