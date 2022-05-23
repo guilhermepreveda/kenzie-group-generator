@@ -1,10 +1,19 @@
-import { Container, ContentContainer, GroupCards, GroupCard } from "./styles";
+import {
+  Container,
+  ContentContainer,
+  GroupCards,
+  GroupCard,
+  DownloadButton,
+} from "./styles";
 
-const Results = ({ groups }) => {
+const Results = ({ membersInformations, groups, exportFunction }) => {
   return (
     !!groups.length && (
       <Container>
         <ContentContainer>
+          <DownloadButton onClick={() => exportFunction()}>
+            Baixar arquivo CSV
+          </DownloadButton>
           <details open>
             <summary>Grupos criados</summary>
 

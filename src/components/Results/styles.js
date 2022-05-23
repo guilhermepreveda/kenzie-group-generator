@@ -33,3 +33,5 @@ export const GroupCard = styled.div`
   flex-direction: column;
   gap: 5px;
 `;
+
+export const DownloadButton = styled.button``;

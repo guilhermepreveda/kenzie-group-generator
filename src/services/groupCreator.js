@@ -96,7 +96,7 @@ const groupCreator = (membersInformations, setGroups) => {
 
   /* Geração dos grupos */
   for (let index = 0; index < groupsNumber; index++) {
-    const currentGroup = { techLeader: null, scrumMaster: null, members: [] };
+    let currentGroup = { techLeader: null, scrumMaster: null, members: [] };
 
     if (
       (mustHaveTechLeaders &&
